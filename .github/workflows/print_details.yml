@@ -1,0 +1,17 @@
+name: Print Details
+
+on:
+  push:
+    branches:
+      - main  # You can specify your branch here
+
+jobs:
+  print_details:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Print Details
+      run: cat details.txt
