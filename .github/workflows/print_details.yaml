@@ -18,8 +18,18 @@ jobs:
     - name: Read Details File
       id: read_details
       run: |
-        details=$(cat details.txt)
-        echo "::set-output name=details::$details"
+        name=$(sed -n '1p' details.txt)
+        age=$(sed -n '2p' details.txt)
+        occupation=$(sed -n '3p' details.txt)
+        interests=$(sed -n '4p' details.txt)
+        echo "::set-output name=name::$name"
+        echo "::set-output name=age::$age"
+        echo "::set-output name=occupation::$occupation"
+        echo "::set-output name=interests::$interests"
       
     - name: Print Details
-      run: echo "${{ steps.read_details.outputs.details }}"
+      run: |
+        echo "Name: ${{ steps.read_details.outputs.name }}"
+        echo "Age: ${{ steps.read_details.outputs.age }}"
+        echo "Occupation: ${{ steps.read_details.outputs.occupation }}"
+        echo "Interests: ${{ steps.read_details.outputs.interests }}"
