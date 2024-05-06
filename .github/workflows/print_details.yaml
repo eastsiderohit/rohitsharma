@@ -15,5 +15,11 @@ jobs:
       with:
         repository: ${{ github.repository }}
       
+    - name: Read Details File
+      id: read_details
+      run: |
+        details=$(cat details.txt)
+        echo "::set-output name=details::$details"
+      
     - name: Print Details
-      run: cat details.txt
+      run: echo "${{ steps.read_details.outputs.details }}"
