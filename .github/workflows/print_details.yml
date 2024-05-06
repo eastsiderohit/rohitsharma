@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        repository: ${{ github.repository }}
       
     - name: Print Details
       run: cat details.txt
